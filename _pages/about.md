@@ -2,12 +2,12 @@
 layout: about
 title: about
 permalink: /
-subtitle: 
-# <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: # BS CS in Machine Learning and Systems from Georgia Institute of Technology # <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
 
 profile:
   align: right
-  image: prof_pic.png
+  image: vertical.jpg # vertical.jpg # prof_pic.png
+  # image: vertical.jpg # prof_pic.png
   image_circular: false # crops the image to make it circular
   address: 
 
@@ -17,7 +17,22 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-WIP
+##### About
+Hi! I'm currently in my final year of the BS Computer Science program at <b><strong>Georgia Institute of Technology</strong></b>. My degree specializations are Machine Learning and Systems. 
+
+##### Research
+I'm a research assistant at the Embedded Pervasive Lab in the College of Computing at Georgia Tech. My research centers around scheduling DAG workloads in edge environments and FaaS systems for latency-sensitive/critical applications. I'm advised by <a href="https://faculty.cc.gatech.edu/~rama/">Dr. Ramachandran</a> and mentored by <a href="http://jinsunyoo.com/">Jinsun Yoo</a>.
+
+##### Work
+I have done two internships as an SDE Intern at Amazon. In AWS, I worked to augment a large-scale distributed secrets management internal service. In the Finance org., I worked to design and prototype an internal tool for collaborative financial report generation. 
+
+I also serve as a Teaching Assistant for CS 3510, Design and Analysis of Algorithms at Georgia Tech. Prior to this, I was a TA for CS 2110, Computer Organization and Programming.
+
+##### Interests
+I'm interested in ML research and distributed systems. In my spare time, I like to build things using code, read topics in math, and learn about ML systems.
+
+I also play the piano (Trinity College London, Music, Grade 7) and enjoy listening to classical, neoclassical and electronic music.
+
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 
