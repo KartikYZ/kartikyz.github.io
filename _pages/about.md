@@ -18,7 +18,7 @@ social: true  # includes social icons at the bottom of the page
 ---
 
 ##### About
-Hi! I'm currently in my final year of the BS Computer Science program at <b><strong>Georgia Institute of Technology</strong></b>. My degree specializations are Machine Learning and Systems. 
+Hi! I'm currently in my final year of the MS Computer Science program at <b><strong>Georgia Institute of Technology</strong></b>. My degree specializations are Machine Learning and Computer Systems. I graduated with a BS CS in December, 2023 from Georgia Tech as well. 
 
 ##### Research
 
