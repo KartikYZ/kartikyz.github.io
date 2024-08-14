@@ -11,7 +11,7 @@ nav_order: 4
 
 <div style="width: 100%; height:800">
 <!-- <iframe src="/assets/pdf/resume.pdf" width="100%" height="800"> -->
-<iframe src="/assets/pdf/kartik_sinha_resume_II.pdf" width="100%" height="800">
+<iframe src="/assets/pdf/kartik_sinha_resume_2024.pdf" width="100%" height="800">
 Please click on the icon on the top right to download my CV if it does not show up in your browser. 
 </iframe>
 </div>
