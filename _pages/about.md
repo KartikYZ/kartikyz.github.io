@@ -21,10 +21,18 @@ social: true  # includes social icons at the bottom of the page
 Hi! I'm currently in my final year of the BS Computer Science program at <b><strong>Georgia Institute of Technology</strong></b>. My degree specializations are Machine Learning and Systems. 
 
 ##### Research
-I'm a research assistant at the Embedded Pervasive Lab in the College of Computing at Georgia Tech. My research centers around scheduling DAG workloads in edge environments and FaaS systems for latency-sensitive/critical applications. I'm advised by <a href="https://faculty.cc.gatech.edu/~rama/">Dr. Ramachandran</a> and mentored by <a href="http://jinsunyoo.com/">Jinsun Yoo</a>.
+My current research centers around LLM-serving of mixture-of-expert models and efficient training of GNN-LLM hybrid architectures. I'm currently advised by <a href="https://www.anand-iyer.com/">Dr. Anand Iyer</a> and mentored by <a href="https://mingyuguan.github.io/">Mingyu Guan</a>
+
+Prior to this I was a research assistant at the Embedded Pervasive Lab in the College of Computing at Georgia Tech. My research centers around scheduling DAG workloads in edge environments and FaaS systems for latency-sensitive/critical applications. I was advised by <a href="https://faculty.cc.gatech.edu/~rama/">Dr. Ramachandran</a> and mentored by <a href="http://jinsunyoo.com/">Jinsun Yoo</a>.
 
 ##### Work
-I have done two internships as an SDE Intern at Amazon. In AWS, I worked to augment a large-scale distributed secrets management internal service. In the Finance org., I worked to design and prototype an internal tool for collaborative financial report generation. 
+I have interned as a software engineer at Citadel, AWS Cryptography, and Amazon Finance. 
+
+At Citadel, I built an automation platform for booking transactions crediting trading desks to enhance operations efficiency, now in production use. 
+
+In AWS, I worked to enhance credentials distribution flows of a large-scale distributed secrets management internal service. 
+
+In Amazon Finance, I worked to design and prototype an internal tool for multi-user, real-time financial report generation. 
 
 I also serve as a Teaching Assistant for CS 3510, Design and Analysis of Algorithms at Georgia Tech. Prior to this, I was a TA for CS 2110, Computer Organization and Programming.
 
