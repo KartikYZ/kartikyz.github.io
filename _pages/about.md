@@ -29,6 +29,10 @@ My current research centers around LLM-serving of mixture-of-expert models and e
 Prior to this I was a research assistant at the Embedded Pervasive Lab. My research centers around scheduling DAG workloads in edge environments and FaaS systems for latency-sensitive/critical applications. I was advised by <a href="https://faculty.cc.gatech.edu/~rama/">Dr. Ramachandran</a> and mentored by <a href="http://jinsunyoo.com/">Jinsun Yoo</a>.
 
 ##### Work
+
+I am currently a Software Engineer at Citadel.
+
+###### Internships
 I have interned as a software engineer at Citadel, AWS Cryptography, and Amazon Finance. 
 
 At Citadel, I built an automation platform for booking transactions crediting trading desks to enhance operations efficiency, now in production use. 

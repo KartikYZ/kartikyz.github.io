@@ -11,6 +11,6 @@ nav_order: 5
 
 Organize your courses by years, topics, or universities, however you like! -->
 
-### Georgia Insitute fof Technology
+### Georgia Insitute of Technology
 - CS 3510: Design and Analysis of Algorithms, Teaching Assistant – Fall 2023, Spring 2023
 - CS 2110: Computer Organization and Programming, Teaching Assistant – Fall 2022, Spring 2022
