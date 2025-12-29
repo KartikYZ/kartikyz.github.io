@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://kartikyz.github.io/sitemap.xml
+Sitemap: https://kartikyz.github.io//sitemap.xml

@@ -1,0 +1,18 @@
+Makefile Grammar
+
+MAKEFILE -> 'Makefile' NL RULES
+RULES -> RULE NL RULES | RULE
+RULE -> Target ':' DEPS NL CMDS
+
+DEPS -> DEP DEPS
+CMDS -> T_CMD CMDS
+T_CMD -> TB CMD NL
+
+TARGET -> word
+DEP -> word
+CMD -> string
+TB -> '\t'
+NL -> '\n'
+
+word (terminal)
+string (terminal)

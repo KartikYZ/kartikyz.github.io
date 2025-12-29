@@ -1,379 +1,318 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://kartikyz.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kartikyz.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2025-08-27T01:37:15+00:00</updated><id>https://kartikyz.github.io/feed.xml</id><title type="html">blank</title><subtitle>Kartik Sinha&apos;s personal website.
-</subtitle><entry><title type="html">a post with bibliography</title><link href="https://kartikyz.github.io/blog/2023/post-bibliography/" rel="alternate" type="text/html" title="a post with bibliography" /><published>2023-07-12T13:56:00+00:00</published><updated>2023-07-12T13:56:00+00:00</updated><id>https://kartikyz.github.io/blog/2023/post-bibliography</id><content type="html" xml:base="https://kartikyz.github.io/blog/2023/post-bibliography/"><![CDATA[<p>This post shows how to add bibliography to simple blog posts. If you would like something more academic, check the <a href="/blog/2021/distill/">distill style post</a>.</p>]]></content><author><name></name></author><category term="sample-posts" /><category term="formatting" /><category term="bib" /><summary type="html"><![CDATA[an example of a blog post with bibliography]]></summary></entry><entry><title type="html">a post with jupyter notebook</title><link href="https://kartikyz.github.io/blog/2023/jupyter-notebook/" rel="alternate" type="text/html" title="a post with jupyter notebook" /><published>2023-07-04T12:57:00+00:00</published><updated>2023-07-04T12:57:00+00:00</updated><id>https://kartikyz.github.io/blog/2023/jupyter-notebook</id><content type="html" xml:base="https://kartikyz.github.io/blog/2023/jupyter-notebook/"><![CDATA[<p>To include a jupyter notebook in a post, you can use the following code:</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{::nomarkdown}
-{% assign jupyter_path = "assets/jupyter/blog.ipynb" | relative_url %}
-{% capture notebook_exists %}{% file_exists assets/jupyter/blog.ipynb %}{% endcapture %}
-{% if notebook_exists == "true" %}
-    {% jupyter_notebook jupyter_path %}
-{% else %}
-    <span class="nt">&lt;p&gt;</span>Sorry, the notebook you are looking for does not exist.<span class="nt">&lt;/p&gt;</span>
-{% endif %}
-{:/nomarkdown}
-</code></pre></div></div>
-
-<p>Let’s break it down: this is possible thanks to <a href="https://github.com/red-data-tools/jekyll-jupyter-notebook">Jekyll Jupyter Notebook plugin</a> that allows you to embed jupyter notebooks in your posts. It basically calls <a href="https://nbconvert.readthedocs.io/en/latest/usage.html#convert-html"><code class="language-plaintext highlighter-rouge">jupyter nbconvert --to html</code></a> to convert the notebook to an html page and then includes it in the post. Since <a href="https://jekyllrb.com/docs/configuration/markdown/">Kramdown</a> is the default Markdown renderer for Jekyll, we need to surround the call to the plugin with the <a href="https://kramdown.gettalong.org/syntax.html#extensions">::nomarkdown</a> tag so that it stops processing this part with Kramdown and outputs the content as-is.</p>
-
-<p>The plugin takes as input the path to the notebook, but it assumes the file exists. If you want to check if the file exists before calling the plugin, you can use the <code class="language-plaintext highlighter-rouge">file_exists</code> filter. This avoids getting a 404 error from the plugin and ending up displaying the main page inside of it instead. If the file does not exist, you can output a message to the user. The code displayed above outputs the following:</p>
-
-
-
-
-    <div
-  class="jupyter-notebook"
-  style="position: relative; width: 100%; margin: 0 auto;">
-  <div class="jupyter-notebook-iframe-container">
-    <iframe
-      src="/assets/jupyter/blog.ipynb.html"
-      style="position: absolute; top: 0; left: 0; border-style: none;"
-      width="100%"
-      height="100%"
-      onload="this.parentElement.style.paddingBottom = (this.contentWindow.document.documentElement.scrollHeight + 10) + 'px'"></iframe>
-  </div>
-</div>
-
-
-
-<p>Note that the jupyter notebook supports both light and dark themes.</p>]]></content><author><name></name></author><category term="sample-posts" /><category term="formatting" /><category term="jupyter" /><summary type="html"><![CDATA[an example of a blog post with jupyter notebook]]></summary></entry><entry><title type="html">a post with custom blockquotes</title><link href="https://kartikyz.github.io/blog/2023/custom-blockquotes/" rel="alternate" type="text/html" title="a post with custom blockquotes" /><published>2023-05-12T19:53:00+00:00</published><updated>2023-05-12T19:53:00+00:00</updated><id>https://kartikyz.github.io/blog/2023/custom-blockquotes</id><content type="html" xml:base="https://kartikyz.github.io/blog/2023/custom-blockquotes/"><![CDATA[<p>This post shows how to add custom styles for blockquotes. Based on <a href="https://github.com/sighingnow/jekyll-gitbook">jekyll-gitbook</a> implementation.</p>
-
-<p>We decided to support the same custom blockquotes as in <a href="https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-06-30-tips_warnings_dangers.html">jekyll-gitbook</a>, which are also found in a lot of other sites’ styles. The styles definitions can be found on the <a href="https://github.com/alshedivat/al-folio/blob/master/_sass/_base.scss">_base.scss</a> file, more specifically:</p>
-
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* Tips, warnings, and dangers */</span>
-<span class="nc">.post</span> <span class="nc">.post-content</span> <span class="nt">blockquote</span> <span class="p">{</span>
-    <span class="k">&amp;</span><span class="nc">.block-tip</span> <span class="p">{</span>
-    <span class="nl">border-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-tip-block</span><span class="p">);</span>
-    <span class="nl">background-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-tip-block-bg</span><span class="p">);</span>
-
-    <span class="nt">p</span> <span class="p">{</span>
-      <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-tip-block-text</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span> <span class="p">{</span>
-      <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-tip-block-title</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-
-  <span class="k">&amp;</span><span class="nc">.block-warning</span> <span class="p">{</span>
-    <span class="nl">border-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-warning-block</span><span class="p">);</span>
-    <span class="nl">background-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-warning-block-bg</span><span class="p">);</span>
-
-    <span class="nt">p</span> <span class="p">{</span>
-      <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-warning-block-text</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span> <span class="p">{</span>
-      <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-warning-block-title</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-
-  <span class="k">&amp;</span><span class="nc">.block-danger</span> <span class="p">{</span>
-    <span class="nl">border-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-danger-block</span><span class="p">);</span>
-    <span class="nl">background-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-danger-block-bg</span><span class="p">);</span>
-
-    <span class="nt">p</span> <span class="p">{</span>
-      <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-danger-block-text</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span> <span class="p">{</span>
-      <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">global-danger-block-title</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>A regular blockquote can be used as following:</p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gt">&gt; This is a regular blockquote</span>
-<span class="gt">&gt; and it can be used as usual</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p>This is a regular blockquote
-and it can be used as usual</p>
-</blockquote>
-
-<p>These custom styles can be used by adding the specific class to the blockquote, as follows:</p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gt">&gt; ##### TIP</span>
-<span class="gt">&gt;</span>
-<span class="gt">&gt; A tip can be used when you want to give advice</span>
-<span class="gt">&gt; related to a certain content.</span>
-{: .block-tip }
-</code></pre></div></div>
-
-<blockquote class="block-tip">
-  <h5 id="tip">TIP</h5>
-
-  <p>A tip can be used when you want to give advice
-related to a certain content.</p>
-</blockquote>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gt">&gt; ##### WARNING</span>
-<span class="gt">&gt;</span>
-<span class="gt">&gt; This is a warning, and thus should</span>
-<span class="gt">&gt; be used when you want to warn the user</span>
-{: .block-warning }
-</code></pre></div></div>
-
-<blockquote class="block-warning">
-  <h5 id="warning">WARNING</h5>
-
-  <p>This is a warning, and thus should
-be used when you want to warn the user</p>
-</blockquote>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gt">&gt; ##### DANGER</span>
-<span class="gt">&gt;</span>
-<span class="gt">&gt; This is a danger zone, and thus should</span>
-<span class="gt">&gt; be used carefully</span>
-{: .block-danger }
-</code></pre></div></div>
-
-<blockquote class="block-danger">
-  <h5 id="danger">DANGER</h5>
-
-  <p>This is a danger zone, and thus should
-be used carefully</p>
-</blockquote>]]></content><author><name></name></author><category term="sample-posts" /><category term="formatting" /><category term="blockquotes" /><summary type="html"><![CDATA[an example of a blog post with custom blockquotes]]></summary></entry><entry><title type="html">a post with table of contents on a sidebar</title><link href="https://kartikyz.github.io/blog/2023/sidebar-table-of-contents/" rel="alternate" type="text/html" title="a post with table of contents on a sidebar" /><published>2023-04-25T14:14:00+00:00</published><updated>2023-04-25T14:14:00+00:00</updated><id>https://kartikyz.github.io/blog/2023/sidebar-table-of-contents</id><content type="html" xml:base="https://kartikyz.github.io/blog/2023/sidebar-table-of-contents/"><![CDATA[<p>This post shows how to add a table of contents as a sidebar.</p>
-
-<h2 id="adding-a-table-of-contents">Adding a Table of Contents</h2>
-
-<p>To add a table of contents to a post as a sidebar, simply add</p>
-<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">toc</span><span class="pi">:</span>
-  <span class="na">sidebar</span><span class="pi">:</span> <span class="s">left</span>
-</code></pre></div></div>
-<p>to the front matter of the post. The table of contents will be automatically generated from the headings in the post. If you wish to display the sidebar to the right, simply change <code class="language-plaintext highlighter-rouge">left</code> to <code class="language-plaintext highlighter-rouge">right</code>.</p>
-
-<h3 id="example-of-sub-heading-1">Example of Sub-Heading 1</h3>
-
-<p>Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href="https://www.pinterest.com">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href="https://en.wikipedia.org/wiki/Cold-pressed_juice">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.</p>
-
-<h3 id="example-of-another-sub-heading-1">Example of another Sub-Heading 1</h3>
-
-<p>Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href="https://www.pinterest.com">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href="https://en.wikipedia.org/wiki/Cold-pressed_juice">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.</p>
-
-<h2 data-toc-text="Customizing" id="customizing-your-table-of-contents">Customizing Your Table of Contents</h2>
-
-<p>If you want to learn more about how to customize the table of contents of your sidebar, you can check the <a href="https://afeld.github.io/bootstrap-toc/">bootstrap-toc</a> documentation. Notice that you can even customize the text of the heading that will be displayed on the sidebar.</p>
-
-<h3 id="example-of-sub-heading-2">Example of Sub-Heading 2</h3>
-
-<p>Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href="https://www.pinterest.com">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href="https://en.wikipedia.org/wiki/Cold-pressed_juice">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.</p>
-
-<h3 id="example-of-another-sub-heading-2">Example of another Sub-Heading 2</h3>
-
-<p>Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href="https://www.pinterest.com">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href="https://en.wikipedia.org/wiki/Cold-pressed_juice">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.</p>]]></content><author><name></name></author><category term="sample-posts" /><category term="formatting" /><category term="toc" /><category term="sidebar" /><summary type="html"><![CDATA[an example of a blog post with table of contents on a sidebar]]></summary></entry><entry><title type="html">a post with audios</title><link href="https://kartikyz.github.io/blog/2023/audios/" rel="alternate" type="text/html" title="a post with audios" /><published>2023-04-25T10:25:00+00:00</published><updated>2023-04-25T10:25:00+00:00</updated><id>https://kartikyz.github.io/blog/2023/audios</id><content type="html" xml:base="https://kartikyz.github.io/blog/2023/audios/"><![CDATA[<p>This is an example post with audios. It supports local audio files.</p>
-
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <audio src="/assets/audio/epicaly-short-113909.mp3" controls="" />
-
-</figure>
-
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <audio src="https://cdn.pixabay.com/download/audio/2022/06/25/audio_69a61cd6d6.mp3" controls="" />
-
-</figure>
-
-    </div>
-</div>
-<div class="caption">
-    A simple, elegant caption looks good between video rows, after each row, or doesn't have to be there at all.
-</div>]]></content><author><name></name></author><category term="sample-posts" /><category term="formatting" /><category term="audios" /><summary type="html"><![CDATA[this is what included audios could look like]]></summary></entry><entry><title type="html">a post with videos</title><link href="https://kartikyz.github.io/blog/2023/videos/" rel="alternate" type="text/html" title="a post with videos" /><published>2023-04-24T21:01:00+00:00</published><updated>2023-04-24T21:01:00+00:00</updated><id>https://kartikyz.github.io/blog/2023/videos</id><content type="html" xml:base="https://kartikyz.github.io/blog/2023/videos/"><![CDATA[<p>This is an example post with videos. It supports local video files.</p>
-
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        
-
-<figure>
-
-  
-
-  <video src="/assets/video/pexels-engin-akyurt-6069112-960x540-30fps.mp4" class="img-fluid rounded z-depth-1" width="auto" height="auto" autoplay="" controls="" />
-
-  
-
-</figure>
-
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        
-
-<figure>
-
-  
-
-  <video src="/assets/video/pexels-engin-akyurt-6069112-960x540-30fps.mp4" class="img-fluid rounded z-depth-1" width="auto" height="auto" controls="" />
-
-  
-
-</figure>
-
-    </div>
-</div>
-<div class="caption">
-    A simple, elegant caption looks good between video rows, after each row, or doesn't have to be there at all.
-</div>
-
-<p>It does also support embedding videos from different sources. Here are some examples:</p>
-
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        
-
-<figure>
-
-  
-
-  <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" class="img-fluid rounded z-depth-1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" width="auto" height="auto" />
-
-  
-
-</figure>
-
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        
-
-<figure>
-
-  
-
-  <iframe src="https://player.vimeo.com/video/524933864?h=1ac4fd9fb4&amp;title=0&amp;byline=0&amp;portrait=0" class="img-fluid rounded z-depth-1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" width="auto" height="auto" />
-
-  
-
-</figure>
-
-    </div>
-</div>]]></content><author><name></name></author><category term="sample-posts" /><category term="formatting" /><category term="videos" /><summary type="html"><![CDATA[this is what included videos could look like]]></summary></entry><entry><title type="html">displaying beautiful tables with Bootstrap Tables</title><link href="https://kartikyz.github.io/blog/2023/tables/" rel="alternate" type="text/html" title="displaying beautiful tables with Bootstrap Tables" /><published>2023-03-20T18:37:00+00:00</published><updated>2023-03-20T18:37:00+00:00</updated><id>https://kartikyz.github.io/blog/2023/tables</id><content type="html" xml:base="https://kartikyz.github.io/blog/2023/tables/"><![CDATA[<p>Using markdown to display tables is easy. Just use the following syntax:</p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| Left aligned | Center aligned | Right aligned |
-| :----------- | :------------: | ------------: |
-| Left 1       | center 1       | right 1       |
-| Left 2       | center 2       | right 2       |
-| Left 3       | center 3       | right 3       |
-</code></pre></div></div>
-
-<p>That will generate:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Left aligned</th>
-      <th style="text-align: center">Center aligned</th>
-      <th style="text-align: right">Right aligned</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">Left 1</td>
-      <td style="text-align: center">center 1</td>
-      <td style="text-align: right">right 1</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Left 2</td>
-      <td style="text-align: center">center 2</td>
-      <td style="text-align: right">right 2</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Left 3</td>
-      <td style="text-align: center">center 3</td>
-      <td style="text-align: right">right 3</td>
-    </tr>
-  </tbody>
-</table>
-
-<p></p>
-
-<p>It is also possible to use HTML to display tables. For example, the following HTML code will display a table with <a href="https://bootstrap-table.com/">Bootstrap Table</a>, loaded from a JSON file:</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;table</span>
-  <span class="na">id=</span><span class="s">"table"</span>
-  <span class="na">data-toggle=</span><span class="s">"table"</span>
-  <span class="na">data-url=</span><span class="s">"{{ '/assets/json/table_data.json' | relative_url }}"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;thead&gt;</span>
-    <span class="nt">&lt;tr&gt;</span>
-      <span class="nt">&lt;th</span> <span class="na">data-field=</span><span class="s">"id"</span><span class="nt">&gt;</span>ID<span class="nt">&lt;/th&gt;</span>
-      <span class="nt">&lt;th</span> <span class="na">data-field=</span><span class="s">"name"</span><span class="nt">&gt;</span>Item Name<span class="nt">&lt;/th&gt;</span>
-      <span class="nt">&lt;th</span> <span class="na">data-field=</span><span class="s">"price"</span><span class="nt">&gt;</span>Item Price<span class="nt">&lt;/th&gt;</span>
-    <span class="nt">&lt;/tr&gt;</span>
-  <span class="nt">&lt;/thead&gt;</span>
-<span class="nt">&lt;/table&gt;</span>
-</code></pre></div></div>
-
-<table data-toggle="table" data-url="/assets/json/table_data.json">
-  <thead>
-    <tr>
-      <th data-field="id">ID</th>
-      <th data-field="name">Item Name</th>
-      <th data-field="price">Item Price</th>
-    </tr>
-  </thead>
-</table>
-
-<p></p>
-
-<p>By using <a href="https://bootstrap-table.com/">Bootstrap Table</a> it is possible to create pretty complex tables, with pagination, search, and more. For example, the following HTML code will display a table, loaded from a JSON file, with pagination, search, checkboxes, and header/content alignment. For more information, check the <a href="https://examples.bootstrap-table.com/index.html">documentation</a>.</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;table</span>
-  <span class="na">data-click-to-select=</span><span class="s">"true"</span>
-  <span class="na">data-height=</span><span class="s">"460"</span>
-  <span class="na">data-pagination=</span><span class="s">"true"</span>
-  <span class="na">data-search=</span><span class="s">"true"</span>
-  <span class="na">data-toggle=</span><span class="s">"table"</span>
-  <span class="na">data-url=</span><span class="s">"{{ '/assets/json/table_data.json' | relative_url }}"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;thead&gt;</span>
-    <span class="nt">&lt;tr&gt;</span>
-      <span class="nt">&lt;th</span> <span class="na">data-checkbox=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/th&gt;</span>
-      <span class="nt">&lt;th</span> <span class="na">data-field=</span><span class="s">"id"</span> <span class="na">data-halign=</span><span class="s">"left"</span> <span class="na">data-align=</span><span class="s">"center"</span> <span class="na">data-sortable=</span><span class="s">"true"</span><span class="nt">&gt;</span>ID<span class="nt">&lt;/th&gt;</span>
-      <span class="nt">&lt;th</span> <span class="na">data-field=</span><span class="s">"name"</span> <span class="na">data-halign=</span><span class="s">"center"</span> <span class="na">data-align=</span><span class="s">"right"</span> <span class="na">data-sortable=</span><span class="s">"true"</span><span class="nt">&gt;</span>Item Name<span class="nt">&lt;/th&gt;</span>
-      <span class="nt">&lt;th</span> <span class="na">data-field=</span><span class="s">"price"</span> <span class="na">data-halign=</span><span class="s">"right"</span> <span class="na">data-align=</span><span class="s">"left"</span> <span class="na">data-sortable=</span><span class="s">"true"</span><span class="nt">&gt;</span>Item Price<span class="nt">&lt;/th&gt;</span>
-    <span class="nt">&lt;/tr&gt;</span>
-  <span class="nt">&lt;/thead&gt;</span>
-<span class="nt">&lt;/table&gt;</span>
-</code></pre></div></div>
-
-<table data-click-to-select="true" data-height="460" data-pagination="true" data-search="true" data-toggle="table" data-url="/assets/json/table_data.json">
-  <thead>
-    <tr>
-      <th data-checkbox="true"></th>
-      <th data-field="id" data-halign="left" data-align="center" data-sortable="true">ID</th>
-      <th data-field="name" data-halign="center" data-align="right" data-sortable="true">Item Name</th>
-      <th data-field="price" data-halign="right" data-align="left" data-sortable="true">Item Price</th>
-    </tr>
-  </thead>
-</table>]]></content><author><name></name></author><category term="sample-posts" /><category term="formatting" /><category term="tables" /><summary type="html"><![CDATA[an example of how to use Bootstrap Tables]]></summary></entry><entry><title type="html">a post with table of contents</title><link href="https://kartikyz.github.io/blog/2023/table-of-contents/" rel="alternate" type="text/html" title="a post with table of contents" /><published>2023-03-20T15:59:00+00:00</published><updated>2023-03-20T15:59:00+00:00</updated><id>https://kartikyz.github.io/blog/2023/table-of-contents</id><content type="html" xml:base="https://kartikyz.github.io/blog/2023/table-of-contents/"><![CDATA[<p>This post shows how to add a table of contents in the beginning of the post.</p>
-
-<h2 id="adding-a-table-of-contents">Adding a Table of Contents</h2>
-
-<p>To add a table of contents to a post, simply add</p>
-<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">toc</span><span class="pi">:</span>
-  <span class="na">beginning</span><span class="pi">:</span> <span class="kc">true</span>
-</code></pre></div></div>
-<p>to the front matter of the post. The table of contents will be automatically generated from the headings in the post.</p>
-
-<h3 id="example-of-sub-heading-1">Example of Sub-Heading 1</h3>
-
-<p>Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href="https://www.pinterest.com">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href="https://en.wikipedia.org/wiki/Cold-pressed_juice">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.</p>
-
-<h3 id="example-of-another-sub-heading-1">Example of another Sub-Heading 1</h3>
-
-<p>Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href="https://www.pinterest.com">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href="https://en.wikipedia.org/wiki/Cold-pressed_juice">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.</p>
-
-<h2 id="table-of-contents-options">Table of Contents Options</h2>
-
-<p>If you want to learn more about how to customize the table of contents, you can check the <a href="https://github.com/toshimaru/jekyll-toc">jekyll-toc</a> repository.</p>
-
-<h3 id="example-of-sub-heading-2">Example of Sub-Heading 2</h3>
-
-<p>Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href="https://www.pinterest.com">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href="https://en.wikipedia.org/wiki/Cold-pressed_juice">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.</p>
-
-<h3 id="example-of-another-sub-heading-2">Example of another Sub-Heading 2</h3>
-
-<p>Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href="https://www.pinterest.com">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href="https://en.wikipedia.org/wiki/Cold-pressed_juice">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.</p>]]></content><author><name></name></author><category term="sample-posts" /><category term="formatting" /><category term="toc" /><summary type="html"><![CDATA[an example of a blog post with table of contents]]></summary></entry><entry><title type="html">a post with giscus comments</title><link href="https://kartikyz.github.io/blog/2022/giscus-comments/" rel="alternate" type="text/html" title="a post with giscus comments" /><published>2022-12-10T15:59:00+00:00</published><updated>2022-12-10T15:59:00+00:00</updated><id>https://kartikyz.github.io/blog/2022/giscus-comments</id><content type="html" xml:base="https://kartikyz.github.io/blog/2022/giscus-comments/"><![CDATA[<p>This post shows how to add GISCUS comments.</p>]]></content><author><name></name></author><category term="sample-posts" /><category term="external-services" /><category term="comments" /><summary type="html"><![CDATA[an example of a blog post with giscus comments]]></summary></entry><entry><title type="html">a post with redirect</title><link href="https://kartikyz.github.io/blog/2022/redirect/" rel="alternate" type="text/html" title="a post with redirect" /><published>2022-02-01T17:39:00+00:00</published><updated>2022-02-01T17:39:00+00:00</updated><id>https://kartikyz.github.io/blog/2022/redirect</id><content type="html" xml:base="https://kartikyz.github.io/blog/2022/redirect/"><![CDATA[<p>Redirecting to another page.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[you can also redirect to assets like pdf]]></summary></entry></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://kartikyz.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://kartikyz.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-12-29T23:48:04+00:00</updated><id>https://kartikyz.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. </subtitle><entry><title type="html">On Implementing Projected Gradient Descent to Attack LLMs</title><link href="https://kartikyz.github.io/blog/2025/pgd/" rel="alternate" type="text/html" title="On Implementing Projected Gradient Descent to Attack LLMs"/><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://kartikyz.github.io/blog/2025/pgd</id><content type="html" xml:base="https://kartikyz.github.io/blog/2025/pgd/"><![CDATA[<h2 id="introduction">Introduction</h2> <p>This post delves into the paper, <a href="https://arxiv.org/abs/2402.09154v1">Attacking LLMs with Projected Gradient Descent</a>, my experience implementing its methodology in PyTorch, and subsequent explorations.</p> <p><em>All references to methodology are drawn from the paper unless otherwise noted.</em></p> <p>The paper highlights that if the rate of adoption and application of LLMs outpaces efforts towards ensuring their alignment and safety, their vulnerabilities will manifest with harmful repercussions.</p> <p>The 2025 paper by Geisler et al. d-cite key=”geisler2025pgd”&gt;&lt;/d-cite&gt; highlights a specific form of attack applicable to open-weight large language models. An ill-intentioned user input \(I\) by itself is insufficient to prompt an LLM to generate harmful content \(C\), typically eliciting a safety response:</p> <p><code class="language-plaintext highlighter-rouge">I'm a helpful assistant and cannot assist with that request...</code></p> <p>However, by appending a tuned ‘adversarial’ prefix and/or suffix \(P\), \(S\) to the input, forming \(P \circ I \circ S\), the LLM can be manipulated into producing the undesired content \(C\).</p> \[P(C | P \circ I \circ S) &gt;&gt; P(C | I)\] <p>Note: \(\circ\) above is the concatenation operator.</p> <h2 id="background">Background</h2> <p>The attack draws inspiration from adding noise as adversarial perturbations to images in computer vision tasks, resulting in misclassifications. However, unlike images where pixel values are continuous, text inputs to LLMs are discrete, integral indices drawn from a vocabulary, making direct gradient-based perturbations infeasible.</p> <p>So given an open-weight LLM, a malicious user prompt \(U\), and a target prefix \(T\) representative of a continuation of malicious content, the task is to find an adversarial suffix X that when attached to the user prompt, “jailbreaks” the LLM into generating the target T.</p> <p>*Note that both prefix and/or suffix can be used.</p> <p>Mathematically,</p> \[\arg\max_{X} P(LLM(U \circ X) = T || T')\] <p>Here, the optimization occurs against ground truth target \(T\). Empirically, steering towards generation of \(T\), is often sufficient for the LLM to continue producing harmful content \(T'\). We want to learn a suffix \(X\), when appended to \(U\), that maximizes the likelihood of generating \(T\).</p> <h2 id="approach">Approach</h2> <p>The likelihood of generating \(T\) given \(U \circ X\) can be expressed as: \(P(LLM(U \circ X) = T) = \prod_{i=1}^{|T|} P_{LLM}(t_i | U \circ X \circ t_{&lt;i})\)</p> <p>For numerical stability, the log-likelihood is maximized (as the logarithm function is monotonically increasing): \(\arg\max_{X} \sum_{i=1}^{|T|} \log P_{LLM}(t_i | U \circ X \circ t_{&lt;i})\)</p> <p>This is equivalent to minimizing the negative log-likelihood (NLL): \(\arg\min_{X} - \sum_{i=1}^{|T|} \log P_{LLM}(t_i | U \circ X \circ t_{&lt;i})\)</p> <p>Which is synonymous with minimizing the cross-entropy loss between the predicted token distribution and the target tokens expressed as one-hot encodings over the model’s vocabulary.</p> <h3 id="relaxation">Relaxation</h3> <p>The adversarial tokens we wish to learn can be expressed as a sequence of \(L\) tokens, each a 1-hot vector dimensionality \(|V|\), where \(V\) is the model vocabulary. \(X \in {0,1}^{L \times |V|}\)</p> <p>In its discrete form, this combinatorial optimization problem is computationally intractable with complexity \(O(|V|^L)\). A relaxation is applied on the ‘hard’ token representations, \(X \in \{0,1\}^{L \times \vert V \vert}\), to ‘soft’ representations, \(X \in [0,1]^{L \times \vert V \vert}\), with \(\forall i, \sum_{j=1}^{\vert V \vert} X_{i,j} = 1\).</p> <p>Each row of \(X\) can be interpreted as a categorical distribution over the model’s vocabulary. This makes the loss function differentiable with respect to \(X\), allowing us to apply gradient descent.</p> <p>Each row of \(X\) belongs to the probability simplex in \(\mathbb{R}^{\vert V \vert}\), which is the set of all vectors \(x \in \mathbb{R}^{\vert V \vert}\) with \(x_i \in [0,1]\) and \(\sum x_i = 1\) (matching our definition of soft token representation above).</p> <p>To map back to discrete, token space, \(t_i = \arg\max_j X_{i,j}\) (greedy decoding).</p> <h3 id="simplex-projection">Simplex Projection</h3> <p>After each gradient descent step, the updated \(X\) may no longer satisfy the simplex constraints, i.e., be a probability vector. To enforce this, \(X\) is row-wise projected onto the probability simplex using the algorithm from <a href="https://stanford.edu/~jduchi/projects/DuchiShSiCh08.pdf">Efficient Projections onto the l1-Ball for Learning in High Dimensions</a> by Duchi et al. <d-cite key="duchi2008simplex"></d-cite>.</p> <p>The projection is defined as finding a probability vector \(x_p\) such that \(x_p = \arg\min_{x \in \Delta} \vert \vert x - x_{t+1} \vert \vert\)</p> <p>A natural question here is the choice of simplex projection over naive normalization or softmax. Two interpretations that intuitively to support this:</p> <ol> <li>Preserves descent step: simplex projection is defined to find the closest point on the simplex to the updated \(x_{t+1}\) by Euclidean distance. This is the point on the simplex maximally preserving the direction of the gradient update.</li> <li>Preserves sparsity as the adjustment to \(x_{t+1}\) is a translation, as opposed to softmax which reduces sparsity (Hint: \(\forall x,e^x &gt; 0\), with \(e^0 = 1\)). As the end goal is to find discrete tokens, preserving sparsity results in faster convergence.</li> </ol> <h3 id="entropy-projection">Entropy Projection</h3> <p>Lastly, an additional projection is conditionally applied to enforce a target Tsallis Entropy with \(q=2\) on the rows of \(X\). This is done if the entropy difference between the current token distribution and the representative uniform distribution is sufficiently small.</p> <p>The Tsallis entropy for a probability vector \(p\) simplifies to \(H_2(p) = 1 - \sum_i p_i^2\) which is related to the norm. For a uniform distribution, this is maximum at 1 and for a one-hot vector (a case of a shifted delta distribution), is minimum at 0, matching the interpretation of entropy as a measure of uncertainty.</p> <p>However, we should note that the definition can be used to solve for a contradictory case of a distribution with value \(\frac{1}{\sqrt{n}}\) everywhere, evaluating to an entropy of 1 yet being uniform.</p> <h2 id="implementation">Implementation</h2> <p>The attack is implemented in PyTorch using the HF transformers library.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PGD</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">).</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.325</span>
+
+        <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_token</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_token</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_token</span>
+            
+        <span class="sh">"""</span><span class="s">
+        Freeze all model parameters, we only want to learn the adversarial suffix
+        </span><span class="sh">"""</span>
+        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">parameters</span><span class="p">():</span>
+            <span class="n">param</span><span class="p">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">False</span>
+            
+        <span class="sh">"""</span><span class="s">
+        Embedding matrix for soft token projection
+        </span><span class="sh">"""</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">get_input_embeddings</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">V</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">embedding</span><span class="p">.</span><span class="n">weight</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div> <p>Some choices of relaxed adversarial tokens are:</p> <ol> <li>Sample from a normal distribution with temperature-scaled softmax normalization</li> <li>Sample from user prompt with additive noise</li> </ol> <p>Creating our learnable adversarial matrix for (1):</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># class PGD:
+</span><span class="k">def</span> <span class="nf">initialize_prompt_from_normal</span><span class="p">(</span>
+    <span class="n">self</span><span class="p">,</span> 
+    <span class="n">user_prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="n">num_prefix_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>   
+    <span class="n">num_suffix_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> 
+    <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+
+    <span class="n">self</span><span class="p">.</span><span class="n">num_prefix</span> <span class="o">=</span> <span class="n">num_prefix_tokens</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">num_suffix</span> <span class="o">=</span> <span class="n">num_suffix_tokens</span>
+    
+    <span class="n">user_prompt_token_ids</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">,</span> <span class="n">add_special_tokens</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="nf">to</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">user_prompt_tokens</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">one_hot</span><span class="p">(</span><span class="n">user_prompt_token_ids</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">V</span><span class="p">).</span><span class="nf">float</span><span class="p">().</span><span class="nf">to</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    
+    <span class="n">prefix_relaxed</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">randn</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_prefix_tokens</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">V</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">prefix_relaxed</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">softmax</span><span class="p">(</span><span class="n">prefix_relaxed</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">suffix_relaxed</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">randn</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_suffix_tokens</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">V</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">suffix_relaxed</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">softmax</span><span class="p">(</span><span class="n">suffix_relaxed</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">adversarial_tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">cat</span><span class="p">([</span><span class="n">prefix_relaxed</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">user_prompt_tokens</span><span class="p">.</span><span class="nf">float</span><span class="p">(),</span> <span class="n">suffix_relaxed</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">adversarial_tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="nc">Parameter</span><span class="p">(</span><span class="n">adversarial_tokens</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">register_parameter</span><span class="p">(</span><span class="sh">"</span><span class="s">adversarial_tokens</span><span class="sh">"</span><span class="p">,</span> <span class="n">adversarial_tokens</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">adversarial_tokens</span>
+</code></pre></div></div> <p>As the learnable matrix contains both the user prompt and the suffix, a helpful utility to keep the user part of the matrix fixed during optimization,</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Util</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">overlay</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">prefix_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">suffix_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="c1"># copy new tensor data only to prefix and suffix tokens
+</span>        <span class="n">result</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="nf">clone</span><span class="p">()</span>
+        <span class="n">result</span><span class="p">[:,</span> <span class="p">:</span><span class="n">prefix_len</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">new</span><span class="p">[:,</span> <span class="p">:</span><span class="n">prefix_len</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">result</span><span class="p">[:,</span> <span class="o">-</span><span class="n">suffix_len</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">new</span><span class="p">[:,</span> <span class="o">-</span><span class="n">suffix_len</span><span class="p">:,</span> <span class="p">:]</span>
+        <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div> <p>Now, the simplex algorithm can be defined as:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Math</span><span class="p">:</span>   
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">simplex_projection</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="c1"># x = (B, seq_len, vocab_size)
+</span>        <span class="n">size</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="nf">size</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">sorted_tokens</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">sort</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">prefix_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">cumsum</span><span class="p">(</span><span class="n">sorted_tokens</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">range_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">prefix_averages</span> <span class="o">=</span> <span class="p">(</span><span class="n">prefix_sum</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">range_tensor</span><span class="p">.</span><span class="nf">float</span><span class="p">()</span>
+        <span class="n">indicators</span> <span class="o">=</span> <span class="p">(</span><span class="n">sorted_tokens</span> <span class="o">-</span> <span class="n">prefix_averages</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">indicators</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">).</span><span class="nf">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">prefix_sum</span><span class="p">.</span><span class="nf">gather</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">rho</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">rho</span><span class="p">.</span><span class="nf">float</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">F</span><span class="p">.</span><span class="nf">relu</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span>
+</code></pre></div></div> <p>applied using,</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># class PGD:
+</span><span class="k">def</span> <span class="nf">simplex_projection</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+    <span class="n">projection</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="nf">simplex_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Util</span><span class="p">.</span><span class="nf">overlay</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">num_prefix</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">num_suffix</span><span class="p">,</span> <span class="n">projection</span><span class="p">)</span>
+</code></pre></div></div> <p>It is initially un-intuitive how this corresponds to the aforementioned geometric definition. The short paper <a href="https://home.ttic.edu/~wwang5/papers/SimplexProj.pdf">Simplex Projection</a> derives the algorithm analytically for the equivalent quadratic program using KKT conditions. The quadratic form expresses minimizing Euclidean distance to the simplex.</p> <p>Similarly, entropy projection is implemented as:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># class Math:
+</span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">entropy_project</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target_entropy</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+    <span class="c1"># x shape: (batch_size, seq_len, vocab_size)
+</span>    <span class="n">indicator</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">).</span><span class="nf">float</span><span class="p">()</span>
+    <span class="n">num_positive</span> <span class="o">=</span> <span class="n">indicator</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="n">indicator</span> <span class="o">/</span> <span class="n">num_positive</span>
+    
+    <span class="n">radius_sq</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">target_entropy</span> <span class="o">-</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">num_positive</span><span class="p">)</span>
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="nf">clamp</span><span class="p">(</span><span class="n">radius_sq</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span>
+    
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">center</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">norm</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">radius</span> <span class="o">&gt;=</span> <span class="n">dist</span><span class="p">).</span><span class="nf">float</span><span class="p">()</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">/</span> <span class="n">torch</span><span class="p">.</span><span class="nf">clamp</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">)</span>
+    <span class="n">projection</span> <span class="o">=</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">diff</span> <span class="o">+</span> <span class="n">center</span>
+    <span class="n">projection</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="nf">simplex_projection</span><span class="p">(</span><span class="n">projection</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">mask</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">mask</span><span class="p">)</span> <span class="o">*</span> <span class="n">projection</span>
+
+<span class="c1"># class PGD:
+</span><span class="k">def</span> <span class="nf">entropy_projection</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target_entropy</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+    <span class="c1"># Project to entropy constraint
+</span>    <span class="n">projection</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="nf">entropy_project</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">target_entropy</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Util</span><span class="p">.</span><span class="nf">overlay</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">num_prefix</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">num_suffix</span><span class="p">,</span> <span class="n">projection</span><span class="p">)</span>
+</code></pre></div></div> <p>Computing the losses is done by making use of the in-built cross-entropy loss function in <code class="language-plaintext highlighter-rouge">transformers</code>:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># class PGD:
+</span><span class="k">def</span> <span class="nf">compute_loss</span><span class="p">(</span>
+        <span class="n">self</span><span class="p">,</span> <span class="n">adversarial_tokens</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target_text</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+    <span class="c1"># Compute negative log likelihood loss for target text
+</span>    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">matmul</span><span class="p">(</span><span class="n">adversarial_tokens</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">embedding</span><span class="p">.</span><span class="n">weight</span><span class="p">)</span>
+    <span class="n">target_ids</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">target_text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">,</span> <span class="n">add_special_tokens</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="nf">to</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="p">.</span><span class="nf">no_grad</span><span class="p">():</span>
+        <span class="n">target_embeddings</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">embedding</span><span class="p">(</span><span class="n">target_ids</span><span class="p">)</span>
+    
+    <span class="c1"># shape (B, seq_len, D)
+</span>    <span class="n">inputs_embeds</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">cat</span><span class="p">([</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">target_embeddings</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># prepend labels with -100 to ignore loss on prompt tokens; 1 is the sequence dimension
+</span>    <span class="n">pad_length</span> <span class="o">=</span> <span class="n">inputs_embeds</span><span class="p">.</span><span class="nf">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">target_ids</span><span class="p">.</span><span class="nf">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">padded_target_ids</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">pad</span><span class="p">(</span><span class="n">target_ids</span><span class="p">,</span> <span class="p">(</span><span class="n">pad_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="n">IGNORE_LOSS_ID</span><span class="p">)</span>
+    
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">model</span><span class="p">(</span><span class="n">inputs_embeds</span><span class="o">=</span><span class="n">inputs_embeds</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">padded_target_ids</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">outputs</span><span class="p">.</span><span class="n">loss</span>
+    
+<span class="k">def</span> <span class="nf">compute_hard_loss</span><span class="p">(</span>
+    <span class="n">self</span><span class="p">,</span> <span class="n">adversarial_tokens</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target_text</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="p">.</span><span class="nf">no_grad</span><span class="p">():</span>
+        <span class="n">discretized_tokens</span> <span class="o">=</span> <span class="n">adversarial_tokens</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ids</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">discretized_tokens</span><span class="p">.</span><span class="nf">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">,</span> <span class="n">add_special_tokens</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="nf">to</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">one_hot_tokens</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">one_hot</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">V</span><span class="p">).</span><span class="nf">float</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">compute_loss</span><span class="p">(</span><span class="n">one_hot_tokens</span><span class="p">,</span> <span class="n">target_text</span><span class="p">).</span><span class="nf">item</span><span class="p">()</span>
+</code></pre></div></div> <p>Note, the loss computation above implicitly uses teacher forcing, where ground truth target tokens are used instead the model’s own output in the auto-regressive decoding phase.</p> <p>In the optimization loop, gradients are masked to only be applied to the non-user prompt portion of the adversarial matrix along with the relevant projections. Both of these are done in a context manager to avoid these computations being tracked by the autograd engine.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    
+    <span class="bp">...</span>
+
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">compute_loss</span><span class="p">(</span><span class="n">adversarial_tokens</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="n">loss</span><span class="p">.</span><span class="nf">backward</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">torch</span><span class="p">.</span><span class="nf">no_grad</span><span class="p">():</span>
+        <span class="n">gradients</span> <span class="o">=</span> <span class="n">Util</span><span class="p">.</span><span class="nf">overlay</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">adversarial_tokens</span><span class="p">.</span><span class="n">grad</span><span class="p">),</span> <span class="n">self</span><span class="p">.</span><span class="n">num_prefix</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">num_suffix</span><span class="p">,</span> <span class="n">adversarial_tokens</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+        <span class="n">clipped_gradients</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">clip_norm</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="n">max_norm</span><span class="o">=</span><span class="mf">20.0</span><span class="p">)</span>
+        <span class="n">adversarial_tokens</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="nf">copy_</span><span class="p">(</span><span class="n">clipped_gradients</span><span class="p">)</span>
+
+    <span class="n">optimizer</span><span class="p">.</span><span class="nf">step</span><span class="p">()</span>
+    <span class="n">scheduler</span><span class="p">.</span><span class="nf">step</span><span class="p">()</span>
+    
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">scheduler</span><span class="p">.</span><span class="nf">get_last_lr</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">with</span> <span class="n">torch</span><span class="p">.</span><span class="nf">no_grad</span><span class="p">():</span>
+        <span class="n">hard_loss</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">compute_hard_loss</span><span class="p">(</span><span class="n">adversarial_tokens</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="n">projected</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">simplex_projection</span><span class="p">(</span><span class="n">adversarial_tokens</span><span class="p">)</span>
+        <span class="n">target_entropy</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">compute_target_entropy</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">loss</span><span class="p">.</span><span class="nf">item</span><span class="p">(),</span> <span class="n">hard_loss</span><span class="p">)</span>
+        <span class="n">projected</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">entropy_projection</span><span class="p">(</span><span class="n">projected</span><span class="p">,</span> <span class="n">target_entropy</span><span class="p">)</span>
+        <span class="n">adversarial_tokens</span><span class="p">.</span><span class="nf">copy_</span><span class="p">(</span><span class="n">projected</span><span class="p">)</span>
+
+    <span class="bp">...</span>
+</code></pre></div></div> <h2 id="experiments">Experiments</h2> <p>Some key things to ensure for stable training and convergence:</p> <ol> <li>alignment between soft and hard token loss</li> <li>preventing learning degenerate solutions and mode collapse</li> </ol> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/pgd/loss_curve_all-480.webp 480w,/assets/img/pgd/loss_curve_all-800.webp 800w,/assets/img/pgd/loss_curve_all-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/pgd/loss_curve_all.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </div> <div class="caption"> While the soft token loss (green) is noisy, it trends downwards centered around the hard token loss, indicating alignment. </div> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/pgd/loss_curve_zoomed-480.webp 480w,/assets/img/pgd/loss_curve_zoomed-800.webp 800w,/assets/img/pgd/loss_curve_zoomed-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/pgd/loss_curve_zoomed.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </div> <div class="caption"> Zooming in, the mean entropy (red) trends downwards as we converge to sparser, discrete solutions. The hard token loss (orange) decreases step-wise after many iterations of search, as indicated by the best hard token loss so far (blue). </div> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/pgd/final_entropies-480.webp 480w,/assets/img/pgd/final_entropies-800.webp 800w,/assets/img/pgd/final_entropies-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/pgd/final_entropies.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </div> <div class="caption"> The final token entropies of the learned tokens are low, suggesting convergence to discrete predictions: </div> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/pgd/token_dist-480.webp 480w,/assets/img/pgd/token_dist-800.webp 800w,/assets/img/pgd/token_dist-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/pgd/token_dist.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </div> <div class="caption"> An example adversarial token's learned distribution over the vocabulary. </div> <h2 id="next">Next</h2> <p>*TODO: I am actively exploring methods in alignment to increase resilience and will update this section.</p> <h2 id="conclusion">Conclusion</h2> <p>Optimizing the relaxed objective purely without alignment to discretized token, i.e., finding adversarial embeddings is trivial in comparison to finding discrete solutions, i.e., adversarial tokens. However, discrete adversarial tokens exist and are effective in steering open-weight models such as Vicuna-7B and Gemma-2B into generating harmful content.</p>]]></content><author><name>Kartik Sinha</name></author><category term="math"/><category term="ml"/><category term="code"/><summary type="html"><![CDATA[Notes on implementing the 2025 paper, "Attacking Large Language Models with Projected Gradient Descent"]]></summary></entry><entry><title type="html">Mixture Of Experts</title><link href="https://kartikyz.github.io/blog/2025/mixture-of-experts/" rel="alternate" type="text/html" title="Mixture Of Experts"/><published>2025-12-14T00:00:00+00:00</published><updated>2025-12-14T00:00:00+00:00</updated><id>https://kartikyz.github.io/blog/2025/mixture-of-experts</id><content type="html" xml:base="https://kartikyz.github.io/blog/2025/mixture-of-experts/"><![CDATA[ ]]></content><author><name></name></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Projects Past</title><link href="https://kartikyz.github.io/blog/2025/projects-past/" rel="alternate" type="text/html" title="Projects Past"/><published>2025-11-29T00:00:00+00:00</published><updated>2025-11-29T00:00:00+00:00</updated><id>https://kartikyz.github.io/blog/2025/projects-past</id><content type="html" xml:base="https://kartikyz.github.io/blog/2025/projects-past/"><![CDATA[ ]]></content><author><name></name></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Refs</title><link href="https://kartikyz.github.io/blog/2025/refs/" rel="alternate" type="text/html" title="Refs"/><published>2025-11-29T00:00:00+00:00</published><updated>2025-11-29T00:00:00+00:00</updated><id>https://kartikyz.github.io/blog/2025/refs</id><content type="html" xml:base="https://kartikyz.github.io/blog/2025/refs/"><![CDATA[ ]]></content><author><name></name></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">a post with plotly.js</title><link href="https://kartikyz.github.io/blog/2025/plotly/" rel="alternate" type="text/html" title="a post with plotly.js"/><published>2025-03-26T14:24:00+00:00</published><updated>2025-03-26T14:24:00+00:00</updated><id>https://kartikyz.github.io/blog/2025/plotly</id><content type="html" xml:base="https://kartikyz.github.io/blog/2025/plotly/"><![CDATA[<p>This is an example post with some <a href="https://plotly.com/javascript/">plotly</a> code.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">plotly
+</span><span class="sb">{
+  "data": [
+    {
+      "x": [1, 2, 3, 4],
+      "y": [10, 15, 13, 17],
+      "type": "scatter"
+    },
+    {
+      "x": [1, 2, 3, 4],
+      "y": [16, 5, 11, 9],
+      "type": "scatter"
+    }
+  ]
+}</span>
+<span class="p">```</span>
+</code></pre></div></div> <p>Which generates:</p> <pre><code class="language-plotly">{
+  "data": [
+    {
+      "x": [1, 2, 3, 4],
+      "y": [10, 15, 13, 17],
+      "type": "scatter"
+    },
+    {
+      "x": [1, 2, 3, 4],
+      "y": [16, 5, 11, 9],
+      "type": "scatter"
+    }
+  ]
+}
+</code></pre> <p>Also another example chart.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">plotly
+</span><span class="sb">{
+  "data": [
+    {
+      "x": [1, 2, 3, 4],
+      "y": [10, 15, 13, 17],
+      "mode": "markers"
+    },
+    {
+      "x": [2, 3, 4, 5],
+      "y": [16, 5, 11, 9],
+      "mode": "lines"
+    },
+    {
+      "x": [1, 2, 3, 4],
+      "y": [12, 9, 15, 12],
+      "mode": "lines+markers"
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Line and Scatter Plot"
+    }
+  }
+}</span>
+<span class="p">```</span>
+</code></pre></div></div> <p>This is how it looks like:</p> <pre><code class="language-plotly">{
+  "data": [
+    {
+      "x": [1, 2, 3, 4],
+      "y": [10, 15, 13, 17],
+      "mode": "markers"
+    },
+    {
+      "x": [2, 3, 4, 5],
+      "y": [16, 5, 11, 9],
+      "mode": "lines"
+    },
+    {
+      "x": [1, 2, 3, 4],
+      "y": [12, 9, 15, 12],
+      "mode": "lines+markers"
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Line and Scatter Plot"
+    }
+  }
+}
+</code></pre>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="charts"/><summary type="html"><![CDATA[this is what included plotly.js code could look like]]></summary></entry><entry><title type="html">a post with image galleries</title><link href="https://kartikyz.github.io/blog/2024/photo-gallery/" rel="alternate" type="text/html" title="a post with image galleries"/><published>2024-12-04T01:59:00+00:00</published><updated>2024-12-04T01:59:00+00:00</updated><id>https://kartikyz.github.io/blog/2024/photo-gallery</id><content type="html" xml:base="https://kartikyz.github.io/blog/2024/photo-gallery/"><![CDATA[<p>The images in this post are all zoomable, arranged into different mini-galleries using different libraries.</p> <h2 id="lightbox2"><a href="https://lokeshdhakar.com/projects/lightbox2/">Lightbox2</a></h2> <p><a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg" data-lightbox="roadtrip"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg"/></a> <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg" data-lightbox="roadtrip"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg"/></a> <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg" data-lightbox="roadtrip"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg"/></a></p> <hr/> <h2 id="photoswipe"><a href="https://photoswipe.com/">PhotoSwipe</a></h2> <div class="pswp-gallery pswp-gallery--single-column" id="gallery--getting-started"> <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg" data-pswp-width="1669" data-pswp-height="2500" target="_blank"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg" alt=""/> </a> <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/7/img-2500.jpg" data-pswp-width="1875" data-pswp-height="2500" data-cropped="true" target="_blank"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/7/img-200.jpg" alt=""/> </a> <a href="https://unsplash.com" data-pswp-src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg" data-pswp-width="2500" data-pswp-height="1666" target="_blank"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg" alt=""/> </a> <div> <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/6/img-2500.jpg" data-pswp-width="2500" data-pswp-height="1667" target="_blank"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/6/img-200.jpg" alt=""/> </a> </div> </div> <hr/> <h2 id="spotlight-js"><a href="https://nextapps-de.github.io/spotlight/">Spotlight JS</a></h2> <div class="spotlight-group"> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg"/> </a> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg"/> </a> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg"/> </a> </div> <div class="spotlight-group"> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/4/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/4/img-200.jpg"/> </a> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/5/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/5/img-200.jpg"/> </a> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/6/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/6/img-200.jpg"/> </a> </div> <hr/> <h2 id="venobox"><a href="https://veno.es/venobox/">Venobox</a></h2> <p><a class="venobox" data-gall="myGallery" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg"/></a> <a class="venobox" data-gall="myGallery" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg"/></a> <a class="venobox" data-gall="myGallery" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg"/></a></p>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="images"/><summary type="html"><![CDATA[this is what included image galleries could look like]]></summary></entry><entry><title type="html">Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra</title><link href="https://kartikyz.github.io/blog/2024/google-gemini-updates-flash-15-gemma-2-and-project-astra/" rel="alternate" type="text/html" title="Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra"/><published>2024-05-14T00:00:00+00:00</published><updated>2024-05-14T00:00:00+00:00</updated><id>https://kartikyz.github.io/blog/2024/google-gemini-updates-flash-15-gemma-2-and-project-astra</id><content type="html" xml:base="https://kartikyz.github.io/blog/2024/google-gemini-updates-flash-15-gemma-2-and-project-astra/"><![CDATA[<p>May 14, 2024 We’re introducing a series of updates across the Gemini family of models, including the new 1.5 Flash, our lightweight model for speed and efficiency, and Project Astra, our vision for the future of AI assistants. In December, we launched our first natively multimodal model Gemini 1.0 in three sizes: Ultra, Pro and Nano. Just a few months later we released 1.5 Pro, with enhanced performance and a breakthrough long context window of 1 million tokens.Developers and enterprise customers have been putting 1.5 Pro to use in incredible ways and finding its long context window, multimodal reasoning capabilities and impressive overall performance incredibly useful.We know from user feedback that some applications need lower latency and a lower cost to serve. This inspired us to keep innovating, so today, we’re introducing Gemini 1.5 Flash: a model that’s lighter-weight than 1.5 Pro, and designed to be fast and efficient to serve at scale.Both 1.5 Pro and 1.5 Flash are available in public preview with a 1 million token context window in Google AI Studio and Vertex AI. And now, 1.5 Pro is also available with a 2 million token context window via waitlist to developers using the API and to Google Cloud customers.We’re also introducing updates across the Gemini family of models, announcing our next generation of open models, Gemma 2, and sharing progress on the future of AI assistants, with Project Astra.Context lengths of leading foundation models compared with Gemini 1.5’s 2 million token capability1.5 Flash is the newest addition to the Gemini model family and the fastest Gemini model served in the API. It’s optimized for high-volume, high-frequency tasks at scale, is more cost-efficient to serve and features our breakthrough long context window.While it’s a lighter weight model than 1.5 Pro, it’s highly capable of multimodal reasoning across vast amounts of information and delivers impressive quality for its size.The new Gemini 1.5 Flash model is optimized for speed and efficiency, is highly capable of multimodal reasoning and features our breakthrough long context window.1.5 Flash excels at summarization, chat applications, image and video captioning, data extraction from long documents and tables, and more. This is because it’s been trained by 1.5 Pro through a process called “distillation,” where the most essential knowledge and skills from a larger model are transferred to a smaller, more efficient model.Read more about 1.5 Flash in our updated Gemini 1.5 technical report, on the Gemini technology page, and learn about 1.5 Flash’s availability and pricing.Over the last few months, we’ve significantly improved 1.5 Pro, our best model for general performance across a wide range of tasks.Beyond extending its context window to 2 million tokens, we’ve enhanced its code generation, logical reasoning and planning, multi-turn conversation, and audio and image understanding through data and algorithmic advances. We see strong improvements on public and internal benchmarks for each of these tasks.1.5 Pro can now follow increasingly complex and nuanced instructions, including ones that specify product-level behavior involving role, format and style. We’ve improved control over the model’s responses for specific use cases, like crafting the persona and response style of a chat agent or automating workflows through multiple function calls. And we’ve enabled users to steer model behavior by setting system instructions.We added audio understanding in the Gemini API and Google AI Studio, so 1.5 Pro can now reason across image and audio for videos uploaded in Google AI Studio. And we’re now integrating 1.5 Pro into Google products, including Gemini Advanced and in Workspace apps.Read more about 1.5 Pro in our updated Gemini 1.5 technical report and on the Gemini technology page.Gemini Nano is expanding beyond text-only inputs to include images as well. Starting with Pixel, applications using Gemini Nano with Multimodality will be able to understand the world the way people do — not just through text, but also through sight, sound and spoken language.Read more about Gemini 1.0 Nano on Android.Today, we’re also sharing a series of updates to Gemma, our family of open models built from the same research and technology used to create the Gemini models.We’re announcing Gemma 2, our next generation of open models for responsible AI innovation. Gemma 2 has a new architecture designed for breakthrough performance and efficiency, and will be available in new sizes.The Gemma family is also expanding with PaliGemma, our first vision-language model inspired by PaLI-3. And we’ve upgraded our Responsible Generative AI Toolkit with LLM Comparator for evaluating the quality of model responses.Read more on the Developer blog.As part of Google DeepMind’s mission to build AI responsibly to benefit humanity, we’ve always wanted to develop universal AI agents that can be helpful in everyday life. That’s why today, we’re sharing our progress in building the future of AI assistants with Project Astra (advanced seeing and talking responsive agent).To be truly useful, an agent needs to understand and respond to the complex and dynamic world just like people do — and take in and remember what it sees and hears to understand context and take action. It also needs to be proactive, teachable and personal, so users can talk to it naturally and without lag or delay.While we’ve made incredible progress developing AI systems that can understand multimodal information, getting response time down to something conversational is a difficult engineering challenge. Over the past few years, we’ve been working to improve how our models perceive, reason and converse to make the pace and quality of interaction feel more natural.Building on Gemini, we’ve developed prototype agents that can process information faster by continuously encoding video frames, combining the video and speech input into a timeline of events, and caching this information for efficient recall.By leveraging our leading speech models, we also enhanced how they sound, giving the agents a wider range of intonations. These agents can better understand the context they’re being used in, and respond quickly, in conversation.With technology like this, it’s easy to envision a future where people could have an expert AI assistant by their side, through a phone or glasses. And some of these capabilities are coming to Google products, like the Gemini app and web experience, later this year.We’ve made incredible progress so far with our family of Gemini models, and we’re always striving to advance the state-of-the-art even further. By investing in a relentless production line of innovation, we’re able to explore new ideas at the frontier, while also unlocking the possibility of new and exciting Gemini use cases.Learn more about Gemini and its capabilities. Your information will be used in accordance with Google’s privacy policy.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      Done. Just one step more.
+    
+      Check your inbox to confirm your subscription.
+    You are already subscribed to our newsletter.
+    You can also subscribe with a
+    different email address
+    
+    .
+    
+  Let’s stay in touch. Get the latest news from Google in your inbox.
+          Follow Us
+</code></pre></div></div>]]></content><author><name></name></author><summary type="html"><![CDATA[We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.]]></summary></entry><entry><title type="html">a post with tabs</title><link href="https://kartikyz.github.io/blog/2024/tabs/" rel="alternate" type="text/html" title="a post with tabs"/><published>2024-05-01T00:32:13+00:00</published><updated>2024-05-01T00:32:13+00:00</updated><id>https://kartikyz.github.io/blog/2024/tabs</id><content type="html" xml:base="https://kartikyz.github.io/blog/2024/tabs/"><![CDATA[<p>This is how a post with <a href="https://github.com/Ovski4/jekyll-tabs">tabs</a> looks like. Note that the tabs could be used for different purposes, not only for code.</p> <h2 id="first-tabs">First tabs</h2> <p>To add tabs, use the following syntax:</p> <div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="w"> </span><span class="nt">tabs</span><span class="w"> </span><span class="nv">group-name</span><span class="w"> </span><span class="cp">%}</span>
+
+<span class="cp">{%</span><span class="w"> </span><span class="nt">tab</span><span class="w"> </span><span class="nv">group-name</span><span class="w"> </span><span class="nv">tab-name-1</span><span class="w"> </span><span class="cp">%}</span>
+
+Content 1
+
+<span class="cp">{%</span><span class="w"> </span><span class="nt">endtab</span><span class="w"> </span><span class="cp">%}</span>
+
+<span class="cp">{%</span><span class="w"> </span><span class="nt">tab</span><span class="w"> </span><span class="nv">group-name</span><span class="w"> </span><span class="nv">tab-name-2</span><span class="w"> </span><span class="cp">%}</span>
+
+Content 2
+
+<span class="cp">{%</span><span class="w"> </span><span class="nt">endtab</span><span class="w"> </span><span class="cp">%}</span>
+
+<span class="cp">{%</span><span class="w"> </span><span class="nt">endtabs</span><span class="w"> </span><span class="cp">%}</span>
+</code></pre></div></div> <p>With this you can generate visualizations like:</p> <ul id="log" class="tab" data-tab="1c2d0ff7-b540-4188-b13d-2146fcc276da" data-name="log"> <li class="active" id="log-php"> <a href="#">php </a> </li> <li id="log-js"> <a href="#">js </a> </li> <li id="log-ruby"> <a href="#">ruby </a> </li> </ul> <ul class="tab-content" id="1c2d0ff7-b540-4188-b13d-2146fcc276da" data-name="log"> <li class="active"> <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">var_dump</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
+</code></pre></div></div> </li> <li> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div> </li> <li> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pputs</span> <span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span>
+</code></pre></div></div> </li> </ul> <h2 id="another-example">Another example</h2> <ul id="data-struct" class="tab" data-tab="585bae39-5e28-46b0-a1ff-e6755a67eca5" data-name="data-struct"> <li class="active" id="data-struct-yaml"> <a href="#">yaml </a> </li> <li id="data-struct-json"> <a href="#">json </a> </li> </ul> <ul class="tab-content" id="585bae39-5e28-46b0-a1ff-e6755a67eca5" data-name="data-struct"> <li class="active"> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hello</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">whatsup"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">hi"</span>
+</code></pre></div></div> </li> <li> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"hello"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"whatsup"</span><span class="p">,</span><span class="w"> </span><span class="s2">"hi"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div> </li> </ul> <h2 id="tabs-for-something-else">Tabs for something else</h2> <ul id="something-else" class="tab" data-tab="3d5d2eaf-5ffa-4b8a-a2a7-dbdd0aa2152a" data-name="something-else"> <li class="active" id="something-else-text"> <a href="#">text </a> </li> <li id="something-else-quote"> <a href="#">quote </a> </li> <li id="something-else-list"> <a href="#">list </a> </li> </ul> <ul class="tab-content" id="3d5d2eaf-5ffa-4b8a-a2a7-dbdd0aa2152a" data-name="something-else"> <li class="active"> <p>Regular text</p> </li> <li> <blockquote> <p>A quote</p> </blockquote> </li> <li> <p>Hipster list</p> <ul> <li>brunch</li> <li>fixie</li> <li>raybans</li> <li>messenger bag</li> </ul> </li> </ul>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="code"/><summary type="html"><![CDATA[this is what included tabs in a post could look like]]></summary></entry><entry><title type="html">a post with typograms</title><link href="https://kartikyz.github.io/blog/2024/typograms/" rel="alternate" type="text/html" title="a post with typograms"/><published>2024-04-29T23:36:10+00:00</published><updated>2024-04-29T23:36:10+00:00</updated><id>https://kartikyz.github.io/blog/2024/typograms</id><content type="html" xml:base="https://kartikyz.github.io/blog/2024/typograms/"><![CDATA[<p>This is an example post with some <a href="https://github.com/google/typograms/">typograms</a> code.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">typograms
+</span><span class="sb">+----+
+|    |---&gt; My first diagram!
++----+</span>
+<span class="p">```</span>
+</code></pre></div></div> <p>Which generates:</p> <pre><code class="language-typograms">+----+
+|    |---&gt; My first diagram!
++----+
+</code></pre> <p>Another example:</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">typograms
+</span><span class="sb">.------------------------.
+|.----------------------.|
+||"https://example.com" ||
+|'----------------------'|
+| ______________________ |
+||                      ||
+||   Welcome!           ||
+||                      ||
+||                      ||
+||  .----------------.  ||
+||  | username       |  ||
+||  '----------------'  ||
+||  .----------------.  ||
+||  |"*******"       |  ||
+||  '----------------'  ||
+||                      ||
+||  .----------------.  ||
+||  |   "Sign-up"    |  ||
+||  '----------------'  ||
+||                      ||
+|+----------------------+|
+.------------------------.</span>
+<span class="p">```</span>
+</code></pre></div></div> <p>which generates:</p> <pre><code class="language-typograms">.------------------------.
+|.----------------------.|
+||"https://example.com" ||
+|'----------------------'|
+| ______________________ |
+||                      ||
+||   Welcome!           ||
+||                      ||
+||                      ||
+||  .----------------.  ||
+||  | username       |  ||
+||  '----------------'  ||
+||  .----------------.  ||
+||  |"*******"       |  ||
+||  '----------------'  ||
+||                      ||
+||  .----------------.  ||
+||  |   "Sign-up"    |  ||
+||  '----------------'  ||
+||                      ||
+|+----------------------+|
+.------------------------.
+</code></pre> <p>For more examples, check out the <a href="https://google.github.io/typograms/#examples">typograms documentation</a>.</p>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="diagrams"/><summary type="html"><![CDATA[this is what included typograms code could look like]]></summary></entry><entry><title type="html">a post that can be cited</title><link href="https://kartikyz.github.io/blog/2024/post-citation/" rel="alternate" type="text/html" title="a post that can be cited"/><published>2024-04-28T15:06:00+00:00</published><updated>2024-04-28T15:06:00+00:00</updated><id>https://kartikyz.github.io/blog/2024/post-citation</id><content type="html" xml:base="https://kartikyz.github.io/blog/2024/post-citation/"><![CDATA[<p>This is an example post that can be cited. The content of the post ends here, while the citation information is automatically provided below. The only thing needed is for you to set the <code class="language-plaintext highlighter-rouge">citation</code> key in the front matter to <code class="language-plaintext highlighter-rouge">true</code>.</p>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="citation"/><summary type="html"><![CDATA[this is what a post that can be cited looks like]]></summary></entry></feed>
