@@ -1,3 +1,8 @@
+<!-- Add noindex meta tag to prevent indexing if noindex is true -->
+{% if page.noindex %}
+  <meta name="robots" content="noindex">
+{% endif %}
+
 <!-- Metadata, OpenGraph and Schema.org -->
 {% include metadata.liquid %}
 
