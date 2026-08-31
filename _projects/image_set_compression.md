@@ -1,5 +1,5 @@
 ---
-noindex: true
+noindex: false
 layout: page
 title: Image Set Compression with Deep Learning
 description: 

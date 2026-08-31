@@ -1,5 +1,5 @@
 ---
-noindex: true
+noindex: false
 layout: page
 title: Projected Gradient Descent
 description: 

@@ -48,7 +48,7 @@ repo_trophies:
 
 navbar_fixed: true
 footer_fixed: true
-search_enabled: false
+search_enabled: true
 socials_in_search: false
 posts_in_search: false
 bib_search: false
@@ -171,7 +171,7 @@ kramdown:
       start_line: 1
 
 # Includes & excludes
-include: ["_pages", "_scripts"]
+include: ["_pages", "_scripts", "_projects"]
 exclude:
   - _projects/*_project.md
   - _pages/profiles.md
